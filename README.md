@@ -15,7 +15,6 @@
 
 ### Program:
 ```
-python
 # Visitor segmentation based on characteristics
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -48,6 +47,36 @@ plt.show()
 ```
 ### Output:
 ![image](https://github.com/user-attachments/assets/4ed47362-7714-423c-9b09-d057df7c3b12)
+
+### Program2:
+```
+df=pd.read_csv("clustervisitor(Salary).csv")
+df1=df['Age']
+df2=df['Salary']
+df3=pd.concat([df1,df2],axis=1)
+df3
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+sc=StandardScaler()
+scaleddata=sc.fit_transform(df3)
+print(scaleddata)
+
+kmeans=KMeans(n_clusters=3,random_state=42)
+df3['cluster']=kmeans.fit_predict(df3)
+df3
+
+import matplotlib.pyplot as plt
+
+plt.scatter(df3['Age'], df3['Salary'], c=df3['cluster'])
+plt.xlabel("Age")
+plt.ylabel("Income (in thousands)")
+plt.show()
+```
+
+### Output:
+<img width="756" height="554" alt="image" src="https://github.com/user-attachments/assets/e9d36a64-0c4a-4be8-9efd-b2075866544a" />
 
 
 ### Result:
